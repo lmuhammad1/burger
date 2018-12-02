@@ -1,7 +1,7 @@
-const connection = require('./connection');
+const connection = require('../config/connection.js');
 
-module.export = function () {
-  function selectAll() {
+const orm = {
+  selectAll: function() {
     connection.query('SELECT * from burgers', function(err, rows, fields) {
       connection.end();
         if (!err)
@@ -9,19 +9,19 @@ module.export = function () {
         else
           console.log('Error while performing Query.');
     });
-  }
+  },
   
-  function insertOne(b1, b2) {
-    connection.query(`INSERT INTO burgers (burger_name, devoured) VALUES ('${b1}', ${b2})`, function(err, result) {
+  insertOne: function(burgerName) {
+    connection.query(`INSERT INTO burgers (burger_name) VALUES ('${burgerName}')`, function(err, result) {
       connection.end();
         if (!err)
           console.log('The number of rows affected: ', result.affectedRows);
         else
           console.log('Error while performing Query.');
     });
-  }
+  },
   
-  function updateOne(id, name) {
+  updateOne: function(id, name) {
     sql = `UPDATE burgers SET burger_name = '${name}' WHERE id = ${id}`;
     connection.query(sql, function(err, rows, fields) {
       connection.end();
@@ -32,6 +32,9 @@ module.export = function () {
     });
   }
 };
-// console.log(selectAll());
-// console.log(insertOne('BABurger8', 1));
-// console.log(updateOne(10, 'LouisBurger'));
+
+module.exports = orm;
+  
+// console.log(orm.selectAll());
+// console.log(orm.insertOne('BABurger8', false));
+// console.log(orm.updateOne(4, 'LouisBurger'));

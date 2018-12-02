@@ -1,6 +1,6 @@
 INSERT INTO burgers 
-  (burger_name, devoured)
+  (burger_name)
 VALUES	
-		( 'Big Boss Burger', '1'),
-		( 'Veggie Burger', '1'),
-		( 'Supreme Burger', '1');
+		( 'Big Boss Burger'),
+		( 'Veggie Burger'),
+		( 'Supreme Burger');
